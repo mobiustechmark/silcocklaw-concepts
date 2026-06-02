@@ -1,0 +1,8 @@
+# Local Claude Code context — keep out of the public preview repo
+CLAUDE.md
+.claude/
+*.local.md
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
