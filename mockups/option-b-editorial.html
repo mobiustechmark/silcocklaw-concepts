@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Silcock Law — Option B · Modern Editorial</title>
+<link rel="icon" href="../assets/favicon.ico" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#33336E', dark: '#27274F' },
+          green: { DEFAULT: '#6DC059', dark: '#57a345' },
+          paper: '#FAFAF7',
+        },
+        fontFamily: {
+          display: ['"Playfair Display"', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .ftr { position: absolute; pointer-events: none; display: none; z-index: 0; }
+  body.feather-subtle .ftr-state-water { display: block; opacity: .5; }
+  body.feather-bold   .ftr-state-water { display: block; opacity: .85; }
+  body.feather-colour .ftr-hero-colour { display: block; opacity: .92; }
+  .above { position: relative; z-index: 1; }
+  .fswitch button.is-on { background:#6DC059; color:#27274F; }
+  .tshadow { text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+  /* feather position/size (responsive) */
+  .ftr-hero-colour { width: 230px; right: 50px; bottom: 40px; transform: rotate(-6deg); }
+  .ftr-state-water { width: 820px; left: 50%; transform: translateX(-50%); top: 0; }
+  @media (max-width: 767px) {
+    .ftr-hero-colour { width: 116px; right: 6px; bottom: 128px; }
+    .ftr-state-water { width: 460px; }
+  }
+</style>
+</head>
+<body class="font-sans text-navy-dark bg-paper antialiased feather-subtle">
+
+  <!-- Feather-style switcher (mock-up tool only) -->
+  <div class="fswitch fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 rounded-full bg-white/95 shadow-lg ring-1 ring-slate-200 px-2 py-1.5 text-xs font-medium">
+    <span class="px-2 text-slate-400">Feather:</span>
+    <button data-mode="subtle" class="is-on rounded-full px-3 py-1.5 text-navy hover:bg-slate-100">Subtle</button>
+    <button data-mode="bold" class="rounded-full px-3 py-1.5 text-navy hover:bg-slate-100">Bold</button>
+    <button data-mode="colour" class="rounded-full px-3 py-1.5 text-navy hover:bg-slate-100">Colour</button>
+  </div>
+
+  <!-- Header -->
+  <header class="absolute top-0 inset-x-0 z-40">
+    <div class="mx-auto max-w-7xl px-6 h-20 md:h-24 flex items-center justify-between">
+      <a href="#top" class="bg-white/90 rounded-lg px-3 py-1.5"><img src="../assets/logo3.png" alt="Silcock Law" class="h-8 md:h-9 w-auto" /></a>
+      <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-white">
+        <a href="#about" class="hover:text-green transition">About</a>
+        <a href="#services" class="hover:text-green transition">Services</a>
+        <a href="#contact" class="hover:text-green transition">Contact</a>
+        <a href="#contact" class="rounded-full border border-white/50 px-5 py-2 hover:bg-white hover:text-navy transition">Enquire</a>
+      </nav>
+      <button id="navBtn" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="navMenu" class="hidden md:hidden mx-4 rounded-2xl bg-navy-dark/95 backdrop-blur text-white p-3 shadow-xl ring-1 ring-white/10">
+      <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-white/10">About</a>
+      <a href="#services" class="block px-4 py-3 rounded-lg hover:bg-white/10">Services</a>
+      <a href="#contact" class="block px-4 py-3 rounded-lg hover:bg-white/10">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero: full-bleed beach -->
+  <section id="top" class="relative min-h-[78vh] md:min-h-[92vh] flex items-end overflow-hidden">
+    <img src="../assets/beachnew.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/60 to-navy-dark/30"></div>
+    <img class="ftr ftr-hero-colour" src="../assets/fullfeather1.png" alt="" />
+    <div class="above mx-auto max-w-7xl w-full px-6 pb-16 md:pb-28 text-white">
+      <p class="font-semibold tracking-[0.25em] text-sm text-green mb-5 tshadow">SILCOCK LAW · AUCKLAND</p>
+      <h1 class="font-display font-semibold text-5xl md:text-8xl leading-[1.02] max-w-4xl">Law in the service of social good.</h1>
+      <p class="mt-8 max-w-xl text-lg md:text-2xl text-slate-100 font-light leading-relaxed">Specialist legal advice for not-for-profit organisations — practical, relevant, and built around the outcomes you exist to deliver.</p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#contact" class="rounded-full bg-green px-8 py-4 font-semibold text-navy-dark hover:bg-white transition">Start a conversation</a>
+        <a href="#about" class="rounded-full bg-white/10 backdrop-blur px-8 py-4 font-semibold border border-white/30 hover:bg-white/20 transition">Meet Jo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section class="relative overflow-hidden">
+    <img class="ftr ftr-state-water" src="../assets/feathernew.png" alt="" />
+    <div class="above mx-auto max-w-5xl px-6 py-24 md:py-36 text-center">
+      <h2 class="font-display text-3xl md:text-5xl leading-tight text-navy">Not-for-profits play a crucial role in society — but what was right one, two, five years ago may not be what’s needed now.</h2>
+      <p class="mt-8 max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">Good legal advice isn’t about scrambling when something goes wrong. It saves time and money, adds efficiencies, manages risk and maximises opportunity — so your people can get on with making life better for others.</p>
+    </div>
+  </section>
+
+  <!-- Services: editorial list -->
+  <section id="services" class="bg-white border-y border-slate-200/70">
+    <div class="mx-auto max-w-7xl px-6 py-24">
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-14">
+        <h2 class="font-display text-4xl md:text-6xl text-navy">Services</h2>
+        <p class="text-slate-500 max-w-sm">Jo’s expertise across the areas not-for-profits most often need.</p>
+      </div>
+      <div class="divide-y divide-slate-200">
+        <article class="grid md:grid-cols-12 gap-6 py-8">
+          <div class="md:col-span-1 font-display text-2xl text-green">01</div>
+          <h3 class="md:col-span-4 font-display text-3xl text-navy">Governance</h3>
+          <p class="md:col-span-7 text-slate-600 self-center">Structure · not-for-profit status · constitution, rules and meetings.</p>
+        </article>
+        <article class="grid md:grid-cols-12 gap-6 py-8">
+          <div class="md:col-span-1 font-display text-2xl text-green">02</div>
+          <h3 class="md:col-span-4 font-display text-3xl text-navy">Compliance</h3>
+          <p class="md:col-span-7 text-slate-600 self-center">Regulatory &amp; legislative requirements · dealing with regulators · submissions.</p>
+        </article>
+        <article class="grid md:grid-cols-12 gap-6 py-8">
+          <div class="md:col-span-1 font-display text-2xl text-green">03</div>
+          <h3 class="md:col-span-4 font-display text-3xl text-navy">Commercial</h3>
+          <p class="md:col-span-7 text-slate-600 self-center">Intellectual property · contract negotiation, drafting &amp; implementation · dispute resolution.</p>
+        </article>
+        <article class="grid md:grid-cols-12 gap-6 py-8">
+          <div class="md:col-span-1 font-display text-2xl text-green">04</div>
+          <h3 class="md:col-span-4 font-display text-3xl text-navy">Employment</h3>
+          <p class="md:col-span-7 text-slate-600 self-center">Employer obligations · resolving problems with staff · policies &amp; procedures.</p>
+        </article>
+        <article class="grid md:grid-cols-12 gap-6 py-8">
+          <div class="md:col-span-1 font-display text-2xl text-green">05</div>
+          <h3 class="md:col-span-4 font-display text-3xl text-navy">Risk Management</h3>
+          <p class="md:col-span-7 text-slate-600 self-center">Managing information &amp; documents · public statements &amp; media · contracts and financial authorities.</p>
+        </article>
+      </div>
+      <p class="mt-12 text-center text-slate-500">Where appropriate, a <span class="text-navy font-medium">fixed maximum fee</span> can be agreed — so your NPO has certainty.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <img src="../assets/josilcock2.jpg" alt="Jo Silcock" class="rounded-3xl shadow-xl w-full max-w-md" />
+        <div class="absolute -bottom-5 -right-3 md:right-10 bg-green text-navy-dark font-display text-xl rounded-2xl px-6 py-4 shadow-lg">15+ years’<br>experience</div>
+      </div>
+      <div>
+        <p class="text-green font-semibold tracking-widest text-sm">ABOUT</p>
+        <h2 class="font-display text-5xl md:text-6xl text-navy mt-3">Jo Silcock</h2>
+        <p class="text-slate-500 font-medium mt-1">Barrister &amp; Solicitor · Titirangi, West Auckland</p>
+        <p class="mt-6 text-lg text-slate-600 leading-relaxed">I’ve mentored youth and volunteered in the not-for-profit sector, so I understand its drivers and its people. My legal experience spans New Zealand, the United Kingdom and the South Pacific — working with individuals, government and private organisations alike.</p>
+        <p class="mt-4 text-slate-600 leading-relaxed">My approachable yet professional style ensures the advice you receive is practical, relevant and easy to use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-navy text-white">
+    <div class="mx-auto max-w-7xl px-6 py-24 grid md:grid-cols-2 gap-16">
+      <div>
+        <h2 class="font-display text-5xl md:text-6xl">Get in touch</h2>
+        <p class="mt-6 text-lg text-slate-200 max-w-md leading-relaxed">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+        <div class="mt-10 space-y-3 text-lg">
+          <p><a href="tel:0211270244" class="hover:text-green">021 127 0244</a></p>
+          <p><a href="mailto:jo@silcocklaw.co.nz" class="hover:text-green">jo@silcocklaw.co.nz</a></p>
+          <p class="text-slate-300">PO Box 60214, Titirangi, Auckland 0642</p>
+        </div>
+      </div>
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('This is a mock-up — the form is not wired up yet.');">
+        <input type="text" placeholder="Name" class="w-full rounded-xl bg-white/10 border border-white/20 px-4 py-3.5 placeholder-slate-300 focus:border-green focus:bg-white/15 outline-none" />
+        <input type="email" placeholder="Email" class="w-full rounded-xl bg-white/10 border border-white/20 px-4 py-3.5 placeholder-slate-300 focus:border-green focus:bg-white/15 outline-none" />
+        <input type="tel" placeholder="Phone" class="w-full rounded-xl bg-white/10 border border-white/20 px-4 py-3.5 placeholder-slate-300 focus:border-green focus:bg-white/15 outline-none" />
+        <textarea rows="4" placeholder="How can I help your organisation?" class="w-full rounded-xl bg-white/10 border border-white/20 px-4 py-3.5 placeholder-slate-300 focus:border-green focus:bg-white/15 outline-none"></textarea>
+        <button class="rounded-full bg-green px-8 py-4 font-semibold text-navy-dark hover:bg-white transition">Send message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-navy-dark text-slate-300 text-sm">
+    <div class="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p><span class="font-semibold text-white">JO SILCOCK</span> — Barrister and Solicitor</p>
+      <p>© Silcock Law · Titirangi, Auckland</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.fswitch button');
+      function setFeather(mode) {
+        document.body.className = document.body.className.replace(/\bfeather-\w+\b/g, '').replace(/\s+/g, ' ').trim() + ' feather-' + mode;
+        for (var i = 0; i < buttons.length; i++) {
+          if (buttons[i].getAttribute('data-mode') === mode) { buttons[i].className = buttons[i].className + ' is-on'; }
+          else { buttons[i].className = buttons[i].className.replace(/\bis-on\b/g, '').trim(); }
+        }
+      }
+      for (var j = 0; j < buttons.length; j++) {
+        buttons[j].addEventListener('click', function () { setFeather(this.getAttribute('data-mode')); });
+      }
+      var navBtn = document.getElementById('navBtn');
+      var navMenu = document.getElementById('navMenu');
+      if (navBtn && navMenu) {
+        navBtn.addEventListener('click', function () {
+          var open = navMenu.classList.toggle('hidden') === false;
+          navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        var links = navMenu.querySelectorAll('a');
+        for (var k = 0; k < links.length; k++) {
+          links[k].addEventListener('click', function () { navMenu.classList.add('hidden'); navBtn.setAttribute('aria-expanded', 'false'); });
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>
