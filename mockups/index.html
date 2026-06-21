@@ -4,81 +4,377 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Silcock Law — Website Concepts</title>
+<title>Silcock Law</title>
 <link rel="icon" href="../assets/favicon.ico" />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito+Sans:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Work+Sans:wght@600;700&family=Nunito:wght@700;800;900&family=Archivo+Black&family=Anton&family=Catamaran:wght@700;800&family=Jost:wght@500;600;700&family=Raleway:wght@700;800&family=Lato:wght@700;900&family=Oswald:wght@600;700&family=Bebas+Neue&family=Sora:wght@700;800&family=Outfit:wght@700;800&family=Manrope:wght@700;800&family=Rubik:wght@700;800&family=League+Spartan:wght@700;800&family=Baloo+2:wght@700;800&family=Fredoka:wght@600;700&family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
 <script>
-  tailwind.config = { theme: { extend: {
-    colors: { navy: { DEFAULT:'#33336E', dark:'#27274F' }, green: { DEFAULT:'#6DC059', dark:'#57a345' } },
-    fontFamily: { head:['Poppins','sans-serif'], sans:['Inter','sans-serif'] } } } };
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#33336E', dark: '#27274F', light: '#43437f' },
+          green: { DEFAULT: '#6DC059', dark: '#57a345' },
+        },
+        fontFamily: {
+          serif: ['Poppins', 'system-ui', 'sans-serif'],
+          sans: ['"Nunito Sans"', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
 </script>
+<style>
+  html { scroll-behavior: smooth; }
+  /* Headings + logo share the switchable heading font */
+  .font-serif { font-family: var(--headfont) !important; font-weight: 600; }
+  /* ---- Feather treatments (toggled by body class) ---- */
+  .ftr { position: absolute; pointer-events: none; display: none; z-index: 0; }
+  /* Subtle: faint watermark behind the white intro, true to current site */
+  body.feather-subtle .ftr-intro-water { display: block; opacity: .55; }
+  /* Bold: large bright watermark across the navy hero + contact */
+  body.feather-bold .ftr-hero-water,
+  body.feather-bold .ftr-contact-water { display: block; opacity: .85; }
+  /* Colour: vivid logo feather as a crisp hero accent */
+  body.feather-colour .ftr-hero-colour { display: block; opacity: .9; }
+  /* keep content above feathers */
+  .above { position: relative; z-index: 1; }
+  /* switcher */
+  .fswitch button.is-on { background:#6DC059; color:#27274F; }
+  /* feather position/size (responsive) */
+  .ftr-hero-water { width: 760px; right: -120px; top: -80px; }
+  .ftr-hero-colour { width: 300px; right: 40px; top: 30px; transform: rotate(8deg); }
+  .ftr-intro-water { width: 680px; left: 50%; transform: translateX(-50%); top: 60px; }
+  .ftr-contact-water { width: 620px; right: -80px; bottom: -60px; }
+  @media (max-width: 767px) {
+    .ftr-hero-water { width: 380px; right: -60px; top: -30px; }
+    .ftr-hero-colour { width: 124px; right: 12px; top: 16px; }
+    .ftr-intro-water { width: 430px; }
+    .ftr-contact-water { width: 360px; right: -50px; }
+  }
+  /* ---- Live theme variables (mock-up playground) ---- */
+  :root {
+    --brand: #6E5230; --brand-dark: #533E24;        /* background (Tobacco) */
+    --accent: #8BD04A; --accent-dark: #6fae37;      /* accent (Lime) */
+    --headfont: 'Poppins', system-ui, sans-serif;   /* page heading font */
+    --logo-silcock: #9A4A22; --logo-law: #31336E;   /* logo two-tone (Rust / brand Navy) */
+    --logofont: 'Poppins', system-ui, sans-serif;   /* logo wordmark font (switchable) */
+    --logoweight: 700;                              /* logo wordmark weight */
+    --logosize: 40px;                               /* logo wordmark size */
+    --feather-scale: 1;                             /* feather size nudge (1 = auto, scales with font) */
+  }
+  /* background — every navy is driven by --brand */
+  .bg-navy { background-color: var(--brand) !important; }
+  .bg-navy-dark { background-color: var(--brand-dark) !important; }
+  .text-navy { color: var(--brand) !important; }
+  .border-navy { border-color: var(--brand) !important; }
+  /* accent — every green is driven by --accent */
+  .text-green { color: var(--accent) !important; }
+  .bg-green { background-color: var(--accent) !important; }
+  .border-green { border-color: var(--accent) !important; }
+  .text-green-dark { color: var(--accent-dark) !important; }
+  .hover\:bg-green-dark:hover { background-color: var(--accent-dark) !important; }
+  .hover\:text-green:hover { color: var(--accent) !important; }
+  /* live logo wordmark */
+  .logo { display:inline-flex; align-items:flex-end; font-family: var(--logofont); font-weight: var(--logoweight); font-size: var(--logosize); letter-spacing:.01em; line-height:1; white-space:nowrap; padding-top: calc(0.6em * var(--feather-scale)); }
+  .logo .lg-si { color: var(--logo-silcock); }
+  .logo .lg-law { color: var(--logo-law); }
+  .logo .lg-i { position:relative; }
+  .logo .lg-feather { position:absolute; left:50%; transform:translateX(-50%); bottom: var(--feather-bottom, 66%); width: calc(0.62em * var(--feather-scale)); height:auto; pointer-events:none; }
+  /* playground control panel */
+  .pg { position:fixed; right:16px; bottom:16px; z-index:60; width:300px; max-width:92vw; background:#fff; border-radius:16px; box-shadow:0 12px 34px rgba(0,0,0,.22); font-size:12px; overflow:hidden; }
+  .pg-head { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; background:#f1f5f9; cursor:pointer; font-weight:700; color:#334155; user-select:none; }
+  .pg-body { padding:12px 14px; display:flex; flex-direction:column; gap:13px; max-height:72vh; overflow:auto; }
+  .pg.collapsed .pg-body { display:none; }
+  .pg.collapsed .pg-caret { transform:rotate(180deg); display:inline-block; }
+  .pg .pg-label { color:#64748b; margin-bottom:6px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:10px; }
+  .pg .row { display:flex; flex-wrap:wrap; gap:6px; }
+  .pg .sw { width:20px; height:20px; border-radius:9999px; border:2px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,.2); cursor:pointer; padding:0; transition:transform .1s; }
+  .pg .sw:hover { transform:scale(1.15); }
+  .pg .sw.is-on { box-shadow:0 0 0 2px #111; }
+  .pg .fontbtn { padding:3px 9px; border-radius:9999px; border:1px solid #e2e8f0; background:#fff; color:#334155; cursor:pointer; font-size:11px; }
+  .pg .fontbtn.is-on { background:#111; color:#fff; border-color:#111; }
+</style>
 </head>
-<body class="font-sans bg-slate-50 text-slate-700">
+<body class="font-sans text-navy-dark antialiased feather-subtle">
 
-  <header class="bg-navy text-white">
-    <div class="mx-auto max-w-5xl px-6 py-14 text-center">
-      <img src="../assets/logo3.png" alt="Silcock Law" class="h-12 mx-auto bg-white rounded-lg px-3 py-2" />
-      <h1 class="font-head font-bold text-3xl md:text-4xl mt-8">Website concepts</h1>
-      <p class="mt-4 text-slate-200 max-w-xl mx-auto">A fresh, mobile-friendly rebuild of silcocklaw.co.nz — same words, same photos, a few different looks. Open each one and let us know which feels most like you.</p>
-      <p class="mt-5 inline-block rounded-full bg-white/10 px-5 py-2 text-sm text-green">🪶 Tip: inside each concept, use the <strong>Feather</strong> switcher at the bottom to try the peacock feather <em>Subtle</em>, <em>Bold</em> or in full <em>Colour</em>.</p>
+  <!-- Playground control panel (mock-up tool only) -->
+  <div id="pg" class="pg">
+    <div class="pg-head" id="pgHead"><span>🎨 Playground — tap to collapse</span><span class="pg-caret">▾</span></div>
+    <div class="pg-body">
+
+      <div class="pg-row">
+        <div class="pg-label">Logo font</div>
+        <div class="row">
+          <button class="fontbtn is-on" data-var="logofont" data-val="'Poppins', system-ui, sans-serif" data-weight="700" style="font-family:Poppins;font-weight:700">Poppins</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Poppins', system-ui, sans-serif" data-weight="800" style="font-family:Poppins;font-weight:800">Poppins XB</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Montserrat', system-ui, sans-serif" data-weight="700" style="font-family:Montserrat;font-weight:700">Montserrat</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Montserrat', system-ui, sans-serif" data-weight="800" style="font-family:Montserrat;font-weight:800">Montserrat XB</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Work Sans', system-ui, sans-serif" data-weight="700" style="font-family:'Work Sans';font-weight:700">Work Sans</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Catamaran', system-ui, sans-serif" data-weight="800" style="font-family:Catamaran;font-weight:800">Catamaran</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Nunito', system-ui, sans-serif" data-weight="900" style="font-family:Nunito;font-weight:900">Nunito</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Jost', system-ui, sans-serif" data-weight="700" style="font-family:Jost;font-weight:700">Jost</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Archivo Black', system-ui, sans-serif" data-weight="400" style="font-family:'Archivo Black'">Archivo Black</button>
+          <button class="fontbtn" data-var="logofont" data-val="Anton, system-ui, sans-serif" data-weight="400" style="font-family:Anton">Anton</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Bebas Neue', system-ui, sans-serif" data-weight="400" style="font-family:'Bebas Neue'">Bebas Neue</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Oswald', system-ui, sans-serif" data-weight="700" style="font-family:Oswald;font-weight:700">Oswald</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Archivo', system-ui, sans-serif" data-weight="800" style="font-family:Archivo;font-weight:800">Archivo</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Raleway', system-ui, sans-serif" data-weight="800" style="font-family:Raleway;font-weight:800">Raleway</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Lato', system-ui, sans-serif" data-weight="900" style="font-family:Lato;font-weight:900">Lato</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Sora', system-ui, sans-serif" data-weight="800" style="font-family:Sora;font-weight:800">Sora</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Outfit', system-ui, sans-serif" data-weight="800" style="font-family:Outfit;font-weight:800">Outfit</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Manrope', system-ui, sans-serif" data-weight="800" style="font-family:Manrope;font-weight:800">Manrope</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Rubik', system-ui, sans-serif" data-weight="800" style="font-family:Rubik;font-weight:800">Rubik</button>
+          <button class="fontbtn" data-var="logofont" data-val="'League Spartan', system-ui, sans-serif" data-weight="800" style="font-family:'League Spartan';font-weight:800">League Spartan</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Baloo 2', system-ui, sans-serif" data-weight="800" style="font-family:'Baloo 2';font-weight:800">Baloo 2</button>
+          <button class="fontbtn" data-var="logofont" data-val="'Fredoka', system-ui, sans-serif" data-weight="700" style="font-family:Fredoka;font-weight:700">Fredoka</button>
+        </div>
+      </div>
+
+      <div class="pg-row">
+        <div class="pg-label">Logo size</div>
+        <div class="row">
+          <button class="fontbtn" data-var="logosize" data-val="28px">XS</button>
+          <button class="fontbtn" data-var="logosize" data-val="34px">S</button>
+          <button class="fontbtn is-on" data-var="logosize" data-val="40px">M</button>
+          <button class="fontbtn" data-var="logosize" data-val="46px">L</button>
+          <button class="fontbtn" data-var="logosize" data-val="54px">XL</button>
+          <button class="fontbtn" data-var="logosize" data-val="64px">2XL</button>
+          <button class="fontbtn" data-var="logosize" data-val="76px">3XL</button>
+        </div>
+      </div>
+
+      <div class="pg-row">
+        <div class="pg-label">Feather size &mdash; Auto matches the font</div>
+        <div class="row">
+          <button class="fontbtn" data-var="feather" data-val="0.8">Smaller</button>
+          <button class="fontbtn is-on" data-var="feather" data-val="1">Auto</button>
+          <button class="fontbtn" data-var="feather" data-val="1.2">Bigger</button>
+          <button class="fontbtn" data-var="feather" data-val="1.4">Biggest</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100">
+    <div class="mx-auto max-w-6xl px-6 min-h-[5rem] py-2 flex items-center justify-between">
+      <a href="#top" class="logo" aria-label="Silcock Law"><span class="lg-si">S<span class="lg-i">I<svg class="lg-feather" viewBox="174 109 81 105" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="matrix(1.3333333,0,0,-1.3333333,214.44533,191.32773)" d="M 0,0 C 0,0 8.094,-1.124 17.086,3.822 26.079,8.769 28.553,24.731 19.334,42.268 10.117,59.803 -0.45,57.78 -0.45,57.78 h 0.647 c 0,0 -10.567,2.023 -19.785,-15.512 C -28.805,24.731 -26.332,8.769 -17.339,3.822 -8.347,-1.124 -0.253,0 -0.253,0 Z" fill="#31336e"/><path transform="matrix(1.3333333,0,0,-1.3333333,214.4284,187.47747)" d="M 0,0 C 0,0 7.284,-1.012 15.377,3.439 23.471,7.892 25.696,22.257 17.4,38.04 9.104,53.822 -0.405,52.001 -0.405,52.001 h 0.582 c 0,0 -9.51,1.821 -17.806,-13.961 C -25.925,22.257 -23.699,7.892 -15.605,3.439 -7.512,-1.012 -0.228,0 -0.228,0 Z" fill="#65c54a"/><path transform="matrix(1.3333333,0,0,-1.3333333,214.51827,184.04267)" d="m 0,0 c 0,0 6.177,-0.661 13.039,2.246 6.864,2.908 8.752,12.292 1.716,22.601 -7.034,10.308 -15.099,9.119 -15.099,9.119 H 0.15 c 0,0 -8.065,1.189 -15.1,-9.119 C -21.984,14.538 -20.097,5.154 -13.234,2.246 -6.37,-0.661 -0.193,0 -0.193,0 Z" fill="#00adef"/><path transform="matrix(1.3333333,0,0,-1.3333333,214.37893,182.27053)" d="m 0,0 c 0,0 4.854,-0.467 10.247,1.59 5.394,2.056 6.877,8.692 1.349,15.982 -5.529,7.29 -11.867,6.449 -11.867,6.449 h 0.388 c 0,0 -6.338,0.841 -11.866,-6.449 C -17.278,10.282 -15.795,3.646 -10.4,1.59 -5.007,-0.467 -0.153,0 -0.153,0 Z" fill="#ffffff"/><path transform="matrix(1.3333333,0,0,-1.3333333,214.3476,177.4684)" d="m 0,0 c 0,0 3.398,-0.328 7.173,1.112 3.776,1.44 4.814,6.085 0.944,11.188 -3.87,5.102 -8.306,4.513 -8.306,4.513 h 0.272 c 0,0 -4.437,0.589 -8.308,-4.513 C -12.094,7.197 -11.056,2.552 -7.28,1.112 -3.504,-0.328 -0.107,0 -0.107,0 Z" fill="#31336e"/></svg></span>LCOCK</span><span class="lg-law">LAW</span></a>
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium tracking-wide">
+        <a href="#top" class="hover:text-green transition">HOME</a>
+        <a href="#about" class="hover:text-green transition">ABOUT</a>
+        <a href="#services" class="hover:text-green transition">SERVICES</a>
+        <a href="#contact" class="inline-flex items-center rounded-full bg-navy px-5 py-2.5 text-white hover:bg-navy-light transition">CONTACT</a>
+      </nav>
+      <button id="navBtn" class="md:hidden text-navy p-2 -mr-2" aria-label="Open menu" aria-expanded="false">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="navMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-3 text-sm font-medium">
+      <a href="#top" class="block px-3 py-3 rounded-lg text-navy hover:bg-slate-50">HOME</a>
+      <a href="#about" class="block px-3 py-3 rounded-lg text-navy hover:bg-slate-50">ABOUT</a>
+      <a href="#services" class="block px-3 py-3 rounded-lg text-navy hover:bg-slate-50">SERVICES</a>
+      <a href="#contact" class="block px-3 py-3 rounded-lg text-navy hover:bg-slate-50">CONTACT</a>
     </div>
   </header>
 
-  <main class="mx-auto max-w-6xl px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+  <!-- Hero -->
+  <section id="top" class="relative bg-navy text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-black/20"></div>
+    <!-- feathers for this section -->
+    <img class="ftr ftr-hero-water" src="../assets/feathernew2.png" alt="" />
+    <img class="ftr ftr-hero-colour" src="../assets/fullfeather1.png" alt="" />
+    <div class="above mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <p class="text-green font-medium tracking-[0.2em] text-sm mb-5">NOT-FOR-PROFIT LAW · AUCKLAND</p>
+      <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] max-w-3xl">Legal advice and support for your not-for-profit.</h1>
+      <p class="mt-7 max-w-2xl text-lg md:text-xl text-slate-200 leading-relaxed">Silcock Law is Jo Silcock, sole practitioner, with personal and professional experience and expertise working with and for not-for-profits to ensure you continue to achieve the positive change you want to see.</p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#contact" class="rounded-full bg-green px-7 py-3.5 font-semibold text-navy-dark hover:bg-green-dark hover:text-white transition">Get in touch</a>
+        <a href="#services" class="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">View services</a>
+      </div>
+    </div>
+  </section>
 
-    <a href="option-a-classic.html" class="group rounded-2xl bg-white ring-1 ring-slate-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition">
-      <div class="h-32 bg-navy flex items-center justify-center">
-        <span class="font-serif text-white text-2xl" style="font-family:Georgia,serif">Aa</span>
+  <!-- Intro -->
+  <section class="relative overflow-hidden">
+    <img class="ftr ftr-intro-water" src="../assets/feathernew.png" alt="" />
+    <div class="above mx-auto max-w-4xl px-6 py-20 md:py-28">
+      <div class="border-l-4 border-green pl-7 md:pl-10">
+        <p class="font-serif text-2xl md:text-3xl leading-snug text-navy">NPOs play a crucial role in society. What was right for your organisation five — even one — years ago may be different from what is needed now.</p>
       </div>
-      <div class="p-6">
-        <p class="text-xs font-head font-semibold tracking-widest text-green">OPTION A</p>
-        <h2 class="font-head font-semibold text-xl text-navy mt-1">Classic Trust</h2>
-        <p class="mt-2 text-sm text-slate-600">Traditional and authoritative — elegant serif headings, deep navy, the feather motif. Reassuring and established.</p>
-        <span class="inline-block mt-4 text-green-dark font-semibold text-sm group-hover:underline">View concept →</span>
+      <div class="mt-10 grid md:grid-cols-2 gap-8 text-slate-600 leading-relaxed">
+        <p>Legal advice isn’t about scrambling for a solution when something goes wrong. Good advice can save your NPO time and money — not just by avoiding problems, but by adding efficiencies, managing risk and maximising opportunities so people can get on with what they’re there to do: make life better for others.</p>
+        <p>That is where Silcock Law can help. Silcock Law understands what your NPO wants to achieve and has the knowledge to help best achieve it — relevant, effective and practical advice that ensures the limited NPO dollar is spent in the most efficient way.</p>
       </div>
-    </a>
+    </div>
+  </section>
 
-    <a href="option-b-editorial.html" class="group rounded-2xl bg-white ring-1 ring-slate-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition">
-      <div class="h-32 bg-cover bg-center" style="background-image:url('../assets/beachnew.jpg')"></div>
-      <div class="p-6">
-        <p class="text-xs font-head font-semibold tracking-widest text-green">OPTION B</p>
-        <h2 class="font-head font-semibold text-xl text-navy mt-1">Modern Editorial</h2>
-        <p class="mt-2 text-sm text-slate-600">Bold and contemporary — a full-screen beach hero, big type and lots of whitespace. Confident and current.</p>
-        <span class="inline-block mt-4 text-green-dark font-semibold text-sm group-hover:underline">View concept →</span>
+  <!-- Services -->
+  <section id="services" class="bg-slate-50 border-y border-slate-100">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <p class="text-green font-semibold tracking-widest text-sm">SERVICES</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-navy mt-3">How Silcock Law can help</h2>
+        <p class="mt-4 text-slate-600">Not-for-profits play a crucial role in society yet have different considerations, priorities and concerns from commercial organisations. Having worked for and within not-for-profit organisations for fifteen years I appreciate the challenges of the not-for-profit sector.</p>
+        <p class="mt-4 text-slate-600">Jo’s experience and expertise spans the areas not-for-profits most often need support.</p>
       </div>
-    </a>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 hover:shadow-md hover:-translate-y-0.5 transition">
+          <h3 class="font-serif text-2xl text-navy">Governance</h3>
+          <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+            <li>Structure</li><li>Not-for-profit status</li><li>Constitution, rules and meetings</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 hover:shadow-md hover:-translate-y-0.5 transition">
+          <h3 class="font-serif text-2xl text-navy">Compliance</h3>
+          <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+            <li>Regulatory &amp; legislative requirements</li><li>Dealing with regulators</li><li>Submissions</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 hover:shadow-md hover:-translate-y-0.5 transition">
+          <h3 class="font-serif text-2xl text-navy">Commercial</h3>
+          <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+            <li>Intellectual property</li><li>Contract negotiation &amp; drafting</li><li>Dispute resolution</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 hover:shadow-md hover:-translate-y-0.5 transition">
+          <h3 class="font-serif text-2xl text-navy">Employment</h3>
+          <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+            <li>Employer obligations</li><li>Resolving problems with staff</li><li>Policies &amp; procedures</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 hover:shadow-md hover:-translate-y-0.5 transition">
+          <h3 class="font-serif text-2xl text-navy">Risk Management</h3>
+          <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+            <li>Managing information &amp; documents</li><li>Public statements &amp; media</li><li>Contracts &amp; financial authorities</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-navy p-7 text-white flex flex-col justify-center">
+          <h3 class="font-serif text-2xl">Certainty on cost</h3>
+          <p class="mt-3 text-slate-200 text-sm leading-relaxed">Where appropriate, a fixed maximum fee can be agreed so your NPO has certainty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <a href="option-c-warm.html" class="group rounded-2xl bg-white ring-1 ring-slate-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition">
-      <div class="h-32 bg-green flex items-center justify-center">
-        <span class="font-head font-bold text-white text-3xl">Aa</span>
+  <!-- About -->
+  <section id="about" class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="grid md:grid-cols-5 gap-12 items-center">
+      <div class="md:col-span-2">
+        <img src="../assets/josilcock2.jpg" alt="Jo Silcock" class="rounded-2xl shadow-lg w-full max-w-sm mx-auto" />
       </div>
-      <div class="p-6">
-        <p class="text-xs font-head font-semibold tracking-widest text-green">OPTION C</p>
-        <h2 class="font-head font-semibold text-xl text-navy mt-1">Warm &amp; Natural</h2>
-        <p class="mt-2 text-sm text-slate-600">Friendly and approachable — soft cream tones, rounded cards, green-forward. Leans into the community feel.</p>
-        <span class="inline-block mt-4 text-green-dark font-semibold text-sm group-hover:underline">View concept →</span>
+      <div class="md:col-span-3">
+        <p class="text-green font-semibold tracking-widest text-sm">ABOUT</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-navy mt-3">Jo Silcock</h2>
+        <p class="text-slate-500 font-medium">Barrister &amp; Solicitor · Auckland</p>
+        <p class="mt-6 text-slate-600 leading-relaxed">I have mentored youth and volunteer in the not-for-profit sector, so I understand the drivers of the sector and the people within it. I have legal experience in New Zealand, the United Kingdom and across the South Pacific, working closely with both individual clients and a range of government and private organisations.</p>
+        <p class="mt-4 font-medium text-navy">Over 15 years’ experience:</p>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate-600 text-sm">
+          <li class="flex gap-2"><span class="text-green">✓</span> Practical decisions with senior management</li>
+          <li class="flex gap-2"><span class="text-green">✓</span> Managing sensitive client matters</li>
+          <li class="flex gap-2"><span class="text-green">✓</span> Submissions, hearings &amp; tribunals</li>
+          <li class="flex gap-2"><span class="text-green">✓</span> Interpreting legislation &amp; compliance</li>
+          <li class="flex gap-2"><span class="text-green">✓</span> Agreements, leases, MoUs, contracts &amp; deeds</li>
+          <li class="flex gap-2"><span class="text-green">✓</span> Implementation &amp; ongoing management</li>
+        </ul>
+        <p class="mt-6 text-slate-600 leading-relaxed italic">“My approachable yet professional style ensures the advice you receive is practical, relevant and easy to use — helping your organisation achieve its goals and maximise opportunities.”</p>
       </div>
-    </a>
+    </div>
+  </section>
 
-    <a href="option-a-classic-warmfonts.html" class="group rounded-2xl bg-white ring-1 ring-slate-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition">
-      <div class="h-32 bg-navy flex items-center justify-center">
-        <span class="font-head font-bold text-white text-3xl">Aa</span>
+  <!-- Contact -->
+  <section id="contact" class="relative bg-navy text-white overflow-hidden">
+    <img class="ftr ftr-contact-water" src="../assets/feathernew2.png" alt="" />
+    <div class="above mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14">
+      <div>
+        <p class="text-green font-semibold tracking-widest text-sm">CONTACT</p>
+        <h2 class="font-serif text-4xl md:text-5xl mt-3">Let’s talk about your NPO</h2>
+        <p class="mt-5 text-slate-200 leading-relaxed max-w-md">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+        <dl class="mt-10 space-y-4 text-slate-200">
+          <div class="flex gap-3"><dt class="text-green font-semibold w-20">Mobile</dt><dd>021 127 0244</dd></div>
+          <div class="flex gap-3"><dt class="text-green font-semibold w-20">Email</dt><dd><a href="mailto:jo@silcocklaw.co.nz" class="hover:text-green">jo@silcocklaw.co.nz</a></dd></div>
+        </dl>
       </div>
-      <div class="p-6">
-        <p class="text-xs font-head font-semibold tracking-widest text-green">OPTION A · v2</p>
-        <h2 class="font-head font-semibold text-xl text-navy mt-1">Classic — Warm fonts</h2>
-        <p class="mt-2 text-sm text-slate-600">The Classic navy layout, but with the Warm concept's friendlier fonts (Poppins + Nunito Sans) instead of the serif.</p>
-        <span class="inline-block mt-4 text-green-dark font-semibold text-sm group-hover:underline">View concept →</span>
-      </div>
-    </a>
+      <form class="rounded-2xl bg-white/95 p-7 text-navy-dark space-y-4" onsubmit="event.preventDefault(); alert('This is a mock-up — the form is not wired up yet.');">
+        <div><label class="block text-sm font-medium mb-1">Name</label><input type="text" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 focus:border-green focus:ring-2 focus:ring-green/30 outline-none" /></div>
+        <div><label class="block text-sm font-medium mb-1">Email</label><input type="email" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 focus:border-green focus:ring-2 focus:ring-green/30 outline-none" /></div>
+        <div><label class="block text-sm font-medium mb-1">Phone</label><input type="tel" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 focus:border-green focus:ring-2 focus:ring-green/30 outline-none" /></div>
+        <div><label class="block text-sm font-medium mb-1">Message</label><textarea rows="4" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 focus:border-green focus:ring-2 focus:ring-green/30 outline-none"></textarea></div>
+        <button class="w-full rounded-full bg-green py-3 font-semibold text-navy-dark hover:bg-green-dark hover:text-white transition">Send message</button>
+      </form>
+    </div>
+  </section>
 
-  </main>
-
-  <footer class="text-center text-xs text-slate-400 pb-10">
-    Draft concepts · contact forms are not yet live · content &amp; images from the current site
+  <!-- Footer -->
+  <footer class="bg-navy-dark text-slate-300">
+    <div class="mx-auto max-w-6xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+      <p><span class="font-semibold text-white">JO SILCOCK</span> — Barrister and Solicitor</p>
+      <p>021 127 0244 · <a href="mailto:jo@silcocklaw.co.nz" class="hover:text-green">jo@silcocklaw.co.nz</a></p>
+    </div>
   </footer>
+
+  <script>
+    (function () {
+      var ctrls = document.querySelectorAll('.pg [data-var]');
+      var _cnv = document.createElement('canvas');
+      var _ctx = _cnv.getContext('2d');
+      // Position the feather just above the "I" based on the font's cap height
+      // (tall-cap fonts like Anton/Oswald reach higher, so the feather must sit higher).
+      function featherBottomFor(family, weight) {
+        var fam = family.split(',')[0];
+        _ctx.font = (weight || '700') + ' 200px ' + fam;
+        var m = _ctx.measureText('I');
+        var capRatio = (m.actualBoundingBoxAscent || 141) / 200;
+        var pct = 66 + (capRatio - 0.705) * 100;   // calibrated to Poppins = 66%
+        if (pct < 56) { pct = 56; }
+        if (pct > 84) { pct = 84; }
+        return pct.toFixed(1) + '%';
+      }
+      function apply(btn) {
+        var v = btn.getAttribute('data-var');
+        var val = btn.getAttribute('data-val');
+        var s = document.body.style;
+        if (v === 'logofont') { s.setProperty('--logofont', val); s.setProperty('--logoweight', btn.getAttribute('data-weight') || '700'); s.setProperty('--feather-bottom', featherBottomFor(val, btn.getAttribute('data-weight'))); }
+        else if (v === 'logosize') { s.setProperty('--logosize', val); }
+        else if (v === 'feather') { s.setProperty('--feather-scale', val); }
+        var sibs = btn.parentNode.querySelectorAll('[data-var]');
+        for (var i = 0; i < sibs.length; i++) { sibs[i].className = sibs[i].className.replace(/\bis-on\b/g, '').trim(); }
+        btn.className = btn.className + ' is-on';
+      }
+      for (var j = 0; j < ctrls.length; j++) {
+        ctrls[j].addEventListener('click', function () { apply(this); });
+      }
+      // Set the feather position for the default (active) font once webfonts have loaded.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          var on = document.querySelector('.pg [data-var="logofont"].is-on');
+          if (on) { document.body.style.setProperty('--feather-bottom', featherBottomFor(on.getAttribute('data-val'), on.getAttribute('data-weight'))); }
+        });
+      }
+      var pg = document.getElementById('pg');
+      var pgHead = document.getElementById('pgHead');
+      if (pg && pgHead) {
+        pgHead.addEventListener('click', function () {
+          pg.className = pg.className.indexOf('collapsed') > -1 ? 'pg' : 'pg collapsed';
+        });
+      }
+      var navBtn = document.getElementById('navBtn');
+      var navMenu = document.getElementById('navMenu');
+      if (navBtn && navMenu) {
+        navBtn.addEventListener('click', function () {
+          var open = navMenu.classList.toggle('hidden') === false;
+          navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        var links = navMenu.querySelectorAll('a');
+        for (var k = 0; k < links.length; k++) {
+          links[k].addEventListener('click', function () { navMenu.classList.add('hidden'); navBtn.setAttribute('aria-expanded', 'false'); });
+        }
+      }
+    })();
+  </script>
 
 </body>
 </html>
