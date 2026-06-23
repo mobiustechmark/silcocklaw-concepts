@@ -61,9 +61,9 @@
     --headfont: 'Poppins', system-ui, sans-serif;   /* page heading font */
     --logo-silcock: #9A4A22; --logo-law: #31336E;   /* logo two-tone (Rust / brand Navy) */
     --logofont: 'Poppins', system-ui, sans-serif;   /* logo wordmark font (switchable) */
-    --logoweight: 700;                              /* logo wordmark weight */
-    --logosize: 40px;                               /* logo wordmark size */
-    --feather-scale: 1;                             /* feather size nudge (1 = auto, scales with font) */
+    --logoweight: 800;                              /* logo wordmark weight (Poppins XB) */
+    --logosize: 54px;                               /* logo wordmark size (XL) */
+    --feather-scale: 1.4;                           /* feather size nudge (Biggest) */
   }
   /* background — every navy is driven by --brand */
   .bg-navy { background-color: var(--brand) !important; }
@@ -100,65 +100,7 @@
 </head>
 <body class="font-sans text-navy-dark antialiased feather-subtle">
 
-  <!-- Playground control panel (mock-up tool only) -->
-  <div id="pg" class="pg">
-    <div class="pg-head" id="pgHead"><span>🎨 Playground — tap to collapse</span><span class="pg-caret">▾</span></div>
-    <div class="pg-body">
-
-      <div class="pg-row">
-        <div class="pg-label">Logo font</div>
-        <div class="row">
-          <button class="fontbtn is-on" data-var="logofont" data-val="'Poppins', system-ui, sans-serif" data-weight="700" style="font-family:Poppins;font-weight:700">Poppins</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Poppins', system-ui, sans-serif" data-weight="800" style="font-family:Poppins;font-weight:800">Poppins XB</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Montserrat', system-ui, sans-serif" data-weight="700" style="font-family:Montserrat;font-weight:700">Montserrat</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Montserrat', system-ui, sans-serif" data-weight="800" style="font-family:Montserrat;font-weight:800">Montserrat XB</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Work Sans', system-ui, sans-serif" data-weight="700" style="font-family:'Work Sans';font-weight:700">Work Sans</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Catamaran', system-ui, sans-serif" data-weight="800" style="font-family:Catamaran;font-weight:800">Catamaran</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Nunito', system-ui, sans-serif" data-weight="900" style="font-family:Nunito;font-weight:900">Nunito</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Jost', system-ui, sans-serif" data-weight="700" style="font-family:Jost;font-weight:700">Jost</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Archivo Black', system-ui, sans-serif" data-weight="400" style="font-family:'Archivo Black'">Archivo Black</button>
-          <button class="fontbtn" data-var="logofont" data-val="Anton, system-ui, sans-serif" data-weight="400" style="font-family:Anton">Anton</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Bebas Neue', system-ui, sans-serif" data-weight="400" style="font-family:'Bebas Neue'">Bebas Neue</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Oswald', system-ui, sans-serif" data-weight="700" style="font-family:Oswald;font-weight:700">Oswald</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Archivo', system-ui, sans-serif" data-weight="800" style="font-family:Archivo;font-weight:800">Archivo</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Raleway', system-ui, sans-serif" data-weight="800" style="font-family:Raleway;font-weight:800">Raleway</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Lato', system-ui, sans-serif" data-weight="900" style="font-family:Lato;font-weight:900">Lato</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Sora', system-ui, sans-serif" data-weight="800" style="font-family:Sora;font-weight:800">Sora</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Outfit', system-ui, sans-serif" data-weight="800" style="font-family:Outfit;font-weight:800">Outfit</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Manrope', system-ui, sans-serif" data-weight="800" style="font-family:Manrope;font-weight:800">Manrope</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Rubik', system-ui, sans-serif" data-weight="800" style="font-family:Rubik;font-weight:800">Rubik</button>
-          <button class="fontbtn" data-var="logofont" data-val="'League Spartan', system-ui, sans-serif" data-weight="800" style="font-family:'League Spartan';font-weight:800">League Spartan</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Baloo 2', system-ui, sans-serif" data-weight="800" style="font-family:'Baloo 2';font-weight:800">Baloo 2</button>
-          <button class="fontbtn" data-var="logofont" data-val="'Fredoka', system-ui, sans-serif" data-weight="700" style="font-family:Fredoka;font-weight:700">Fredoka</button>
-        </div>
-      </div>
-
-      <div class="pg-row">
-        <div class="pg-label">Logo size</div>
-        <div class="row">
-          <button class="fontbtn" data-var="logosize" data-val="28px">XS</button>
-          <button class="fontbtn" data-var="logosize" data-val="34px">S</button>
-          <button class="fontbtn is-on" data-var="logosize" data-val="40px">M</button>
-          <button class="fontbtn" data-var="logosize" data-val="46px">L</button>
-          <button class="fontbtn" data-var="logosize" data-val="54px">XL</button>
-          <button class="fontbtn" data-var="logosize" data-val="64px">2XL</button>
-          <button class="fontbtn" data-var="logosize" data-val="76px">3XL</button>
-        </div>
-      </div>
-
-      <div class="pg-row">
-        <div class="pg-label">Feather size &mdash; Auto matches the font</div>
-        <div class="row">
-          <button class="fontbtn" data-var="feather" data-val="0.8">Smaller</button>
-          <button class="fontbtn is-on" data-var="feather" data-val="1">Auto</button>
-          <button class="fontbtn" data-var="feather" data-val="1.2">Bigger</button>
-          <button class="fontbtn" data-var="feather" data-val="1.4">Biggest</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  <!-- (logo playground removed — settings locked: Poppins XB / XL / Biggest feather) -->
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-100">
     <div class="mx-auto max-w-6xl px-6 min-h-[5rem] py-2 flex items-center justify-between">
@@ -188,9 +130,9 @@
     <img class="ftr ftr-hero-water" src="../assets/feathernew2.png" alt="" />
     <img class="ftr ftr-hero-colour" src="../assets/fullfeather1.png" alt="" />
     <div class="above mx-auto max-w-6xl px-6 py-24 md:py-32">
-      <p class="text-green font-medium tracking-[0.2em] text-sm mb-5">NOT-FOR-PROFIT LAW · AUCKLAND</p>
-      <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] max-w-3xl">Legal advice and support for your not-for-profit.</h1>
-      <p class="mt-7 max-w-2xl text-lg md:text-xl text-slate-200 leading-relaxed">Silcock Law is Jo Silcock, sole practitioner, with personal and professional experience and expertise working with and for not-for-profits to ensure you continue to achieve the positive change you want to see.</p>
+      <p class="text-green font-semibold tracking-[0.2em] text-base mb-5">NOT-FOR-PROFIT LAW · AUCKLAND</p>
+      <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] max-w-3xl">Legal advice and support for your not-for-profit</h1>
+      <p class="mt-7 max-w-2xl text-lg md:text-xl text-slate-200 leading-relaxed">Silcock Law is Jo Silcock, sole practitioner, with over 20 years personal and professional expertise working with not-for-profits — who can support your organisation to achieve positive change.</p>
       <div class="mt-10 flex flex-wrap gap-4">
         <a href="#contact" class="rounded-full bg-green px-7 py-3.5 font-semibold text-navy-dark hover:bg-green-dark hover:text-white transition">Get in touch</a>
         <a href="#services" class="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">View services</a>
@@ -203,11 +145,11 @@
     <img class="ftr ftr-intro-water" src="../assets/feathernew.png" alt="" />
     <div class="above mx-auto max-w-4xl px-6 py-20 md:py-28">
       <div class="border-l-4 border-green pl-7 md:pl-10">
-        <p class="font-serif text-2xl md:text-3xl leading-snug text-navy">NPOs play a crucial role in society. What was right for your organisation five — even one — years ago may be different from what is needed now.</p>
+        <p class="font-serif text-2xl md:text-3xl leading-snug text-navy">Not-for-profits play a crucial role in society yet have different considerations, priorities and concerns from commercial organisations. Having worked for and within not-for-profit organisations for fifteen years I appreciate the challenges of the not-for-profit sector.</p>
       </div>
       <div class="mt-10 grid md:grid-cols-2 gap-8 text-slate-600 leading-relaxed">
-        <p>Legal advice isn’t about scrambling for a solution when something goes wrong. Good advice can save your NPO time and money — not just by avoiding problems, but by adding efficiencies, managing risk and maximising opportunities so people can get on with what they’re there to do: make life better for others.</p>
-        <p>That is where Silcock Law can help. Silcock Law understands what your NPO wants to achieve and has the knowledge to help best achieve it — relevant, effective and practical advice that ensures the limited NPO dollar is spent in the most efficient way.</p>
+        <p>Legal advice isn’t about scrambling for a solution when something goes wrong. Good advice can save your not-for-profit time and money — not just by avoiding problems, but by adding efficiencies, managing risk and maximising opportunities so people can get on with what they’re there to do: make life better for others.</p>
+        <p>That is where Silcock Law can help. Silcock can understand what your not-for-profit wants to achieve and has the knowledge to help best achieve it — relevant, effective and practical advice that ensures the limited not-for-profit dollar is spent in the most efficient way.</p>
       </div>
     </div>
   </section>
@@ -218,7 +160,6 @@
       <div class="max-w-2xl">
         <p class="text-green font-semibold tracking-widest text-sm">SERVICES</p>
         <h2 class="font-serif text-4xl md:text-5xl text-navy mt-3">How Silcock Law can help</h2>
-        <p class="mt-4 text-slate-600">Not-for-profits play a crucial role in society yet have different considerations, priorities and concerns from commercial organisations. Having worked for and within not-for-profit organisations for fifteen years I appreciate the challenges of the not-for-profit sector.</p>
         <p class="mt-4 text-slate-600">Jo’s experience and expertise spans the areas not-for-profits most often need support.</p>
       </div>
       <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -254,7 +195,7 @@
         </div>
         <div class="rounded-2xl bg-navy p-7 text-white flex flex-col justify-center">
           <h3 class="font-serif text-2xl">Certainty on cost</h3>
-          <p class="mt-3 text-slate-200 text-sm leading-relaxed">Where appropriate, a fixed maximum fee can be agreed so your NPO has certainty.</p>
+          <p class="mt-3 text-slate-200 text-sm leading-relaxed">Where appropriate, a fixed maximum fee can be agreed so your not-for-profit has certainty.</p>
         </div>
       </div>
     </div>
@@ -291,7 +232,7 @@
     <div class="above mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14">
       <div>
         <p class="text-green font-semibold tracking-widest text-sm">CONTACT</p>
-        <h2 class="font-serif text-4xl md:text-5xl mt-3">Let’s talk about your NPO</h2>
+        <h2 class="font-serif text-4xl md:text-5xl mt-3">Let’s talk about your not-for-profit</h2>
         <p class="mt-5 text-slate-200 leading-relaxed max-w-md">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
         <dl class="mt-10 space-y-4 text-slate-200">
           <div class="flex gap-3"><dt class="text-green font-semibold w-20">Mobile</dt><dd>021 127 0244</dd></div>
@@ -318,11 +259,9 @@
 
   <script>
     (function () {
-      var ctrls = document.querySelectorAll('.pg [data-var]');
       var _cnv = document.createElement('canvas');
       var _ctx = _cnv.getContext('2d');
-      // Position the feather just above the "I" based on the font's cap height
-      // (tall-cap fonts like Anton/Oswald reach higher, so the feather must sit higher).
+      // Position the feather just above the "I" based on the logo font's cap height.
       function featherBottomFor(family, weight) {
         var fam = family.split(',')[0];
         _ctx.font = (weight || '700') + ' 200px ' + fam;
@@ -333,32 +272,10 @@
         if (pct > 84) { pct = 84; }
         return pct.toFixed(1) + '%';
       }
-      function apply(btn) {
-        var v = btn.getAttribute('data-var');
-        var val = btn.getAttribute('data-val');
-        var s = document.body.style;
-        if (v === 'logofont') { s.setProperty('--logofont', val); s.setProperty('--logoweight', btn.getAttribute('data-weight') || '700'); s.setProperty('--feather-bottom', featherBottomFor(val, btn.getAttribute('data-weight'))); }
-        else if (v === 'logosize') { s.setProperty('--logosize', val); }
-        else if (v === 'feather') { s.setProperty('--feather-scale', val); }
-        var sibs = btn.parentNode.querySelectorAll('[data-var]');
-        for (var i = 0; i < sibs.length; i++) { sibs[i].className = sibs[i].className.replace(/\bis-on\b/g, '').trim(); }
-        btn.className = btn.className + ' is-on';
-      }
-      for (var j = 0; j < ctrls.length; j++) {
-        ctrls[j].addEventListener('click', function () { apply(this); });
-      }
-      // Set the feather position for the default (active) font once webfonts have loaded.
+      // Lock the feather position for the logo font (Poppins 800) once webfonts have loaded.
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function () {
-          var on = document.querySelector('.pg [data-var="logofont"].is-on');
-          if (on) { document.body.style.setProperty('--feather-bottom', featherBottomFor(on.getAttribute('data-val'), on.getAttribute('data-weight'))); }
-        });
-      }
-      var pg = document.getElementById('pg');
-      var pgHead = document.getElementById('pgHead');
-      if (pg && pgHead) {
-        pgHead.addEventListener('click', function () {
-          pg.className = pg.className.indexOf('collapsed') > -1 ? 'pg' : 'pg collapsed';
+          document.body.style.setProperty('--feather-bottom', featherBottomFor("'Poppins', system-ui, sans-serif", '800'));
         });
       }
       var navBtn = document.getElementById('navBtn');
