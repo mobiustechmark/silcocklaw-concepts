@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+// Host-agnostic: set PUBLIC_FORM_ENDPOINT (Formspree / Netlify / Mailgun relay) at go-live.
+// Until it is set, the form validates but tells the visitor to email or phone instead.
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const field = 'w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-accent-dark focus:ring-2 focus:ring-accent/30 aria-[invalid=true]:border-red-600';
+---
+<Base title="Contact" description="Contact Jo Silcock about legal advice for your not-for-profit. Mobile 021 127 0244, jo@silcocklaw.co.nz.">
+  <PageHero eyebrow="CONTACT" title="Let’s talk about your not-for-profit" />
+  <section class="mx-auto grid max-w-6xl gap-14 px-6 py-16 md:grid-cols-2 md:py-24">
+    <div>
+      <p class="max-w-md leading-relaxed text-slate-600">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+      <dl class="mt-10 space-y-4 text-slate-700">
+        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-dark">Mobile</dt><dd><a href="tel:+64211270244" class="hover:text-brand">021 127 0244</a></dd></div>
+        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-dark">Email</dt><dd><a href="mailto:jo@silcocklaw.co.nz" class="hover:text-brand">jo@silcocklaw.co.nz</a></dd></div>
+      </dl>
+    </div>
+
+    <form id="contactForm" action={endpoint || undefined} method="post" novalidate data-endpoint={endpoint}
+          class="space-y-4 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200">
+      <div>
+        <label for="cf-name" class="mb-1 block text-sm font-medium">Name <span class="text-red-700" aria-hidden="true">*</span></label>
+        <input id="cf-name" name="name" type="text" required autocomplete="name" class={field} aria-describedby="cf-name-err" />
+        <p id="cf-name-err" class="mt-1 hidden text-sm text-red-700">Please enter your name.</p>
+      </div>
+      <div>
+        <label for="cf-email" class="mb-1 block text-sm font-medium">Email <span class="text-red-700" aria-hidden="true">*</span></label>
+        <input id="cf-email" name="email" type="email" required autocomplete="email" class={field} aria-describedby="cf-email-err" />
+        <p id="cf-email-err" class="mt-1 hidden text-sm text-red-700">Please enter a valid email address.</p>
+      </div>
+      <div>
+        <label for="cf-phone" class="mb-1 block text-sm font-medium">Phone</label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" class={field} />
+      </div>
+      <div>
+        <label for="cf-message" class="mb-1 block text-sm font-medium">Message <span class="text-red-700" aria-hidden="true">*</span></label>
+        <textarea id="cf-message" name="message" rows="5" required minlength="10" class={field} aria-describedby="cf-message-err"></textarea>
+        <p id="cf-message-err" class="mt-1 hidden text-sm text-red-700">Please tell me a little about what you need (at least 10 characters).</p>
+      </div>
+      <!-- Honeypot: bots fill it, people never see it. -->
+      <div class="hidden" aria-hidden="true"><label>Leave blank <input name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
+      <button type="submit" class="w-full rounded-full bg-accent py-3 font-semibold text-ink transition hover:bg-accent-dark hover:text-white disabled:opacity-60">Send message</button>
+      <p id="cf-status" class="text-sm" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = document.getElementById('cf-status');
+
+  const showError = (input: HTMLInputElement | HTMLTextAreaElement, bad: boolean) => {
+    input.setAttribute('aria-invalid', String(bad));
+    document.getElementById(`${input.id}-err`)?.classList.toggle('hidden', !bad);
+  };
+
+  const validate = () => {
+    let first: HTMLElement | null = null;
+    for (const el of form!.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]')) {
+      el.value = el.value.trim() === '' ? '' : el.value;
+      const bad = !el.checkValidity();
+      showError(el, bad);
+      if (bad && !first) first = el;
+    }
+    first?.focus();
+    return !first;
+  };
+
+  if (form && status) {
+    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((el) =>
+      el.addEventListener('blur', () => { if (el.value) showError(el, !el.checkValidity()); }));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        status.className = 'text-sm text-slate-700';
+        status.textContent = 'Online enquiries aren’t switched on yet — please email jo@silcocklaw.co.nz or call 021 127 0244.';
+        return;
+      }
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      button.disabled = true;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        status.className = 'text-sm text-green-800';
+        status.textContent = 'Thanks — your message has been sent. Jo will be in touch soon.';
+      } catch {
+        status.className = 'text-sm text-red-700';
+        status.textContent = 'Sorry, that didn’t send. Please email jo@silcocklaw.co.nz or call 021 127 0244.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>

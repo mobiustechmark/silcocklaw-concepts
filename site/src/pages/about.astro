@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+const experience = [
+  'Practical decisions with senior management',
+  'Managing sensitive client matters',
+  'Submissions, hearings & tribunals',
+  'Interpreting legislation & compliance',
+  'Agreements, leases, MoUs, contracts & deeds',
+  'Implementation & ongoing management',
+];
+---
+<Base title="About Jo Silcock" description="Jo Silcock, barrister and solicitor, Auckland — over 15 years’ experience including governance roles across the not-for-profit sector.">
+  <PageHero eyebrow="ABOUT" title="Jo Silcock" />
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <div class="grid items-center gap-12 md:grid-cols-5">
+      <div class="md:col-span-2">
+        <img src="/images/josilcock2.jpg" alt="Jo Silcock" class="mx-auto w-full max-w-sm rounded-2xl shadow-lg" />
+      </div>
+      <div class="md:col-span-3">
+        <p class="font-medium text-slate-500">Barrister &amp; Solicitor · Auckland</p>
+        <p class="mt-6 leading-relaxed text-slate-600">I have chaired and sat on the board of a number of organisations in the not-for-profit sector, so I understand the drivers of the sector and the people within it. I have legal experience in New Zealand, the United Kingdom and across the South Pacific, working closely with both individual clients and a range of government and private organisations.</p>
+        <p class="mt-4 font-medium text-brand">Over 15 years’ experience:</p>
+        <ul class="mt-3 grid gap-x-8 gap-y-2 text-sm text-slate-600 sm:grid-cols-2">
+          {experience.map((e) => <li class="flex gap-2"><span class="text-accent-dark" aria-hidden="true">✓</span> {e}</li>)}
+        </ul>
+        <p class="mt-6 italic leading-relaxed text-slate-600">“My approachable yet professional style ensures the advice you receive is practical, relevant and easy to use — helping your organisation achieve its goals and maximise opportunities.”</p>
+      </div>
+    </div>
+  </section>
+</Base>

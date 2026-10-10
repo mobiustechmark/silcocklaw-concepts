@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+---
+<Base>
+  <section class="relative overflow-hidden bg-brand text-white">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/10 to-black/20"></div>
+    <div class="above mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <p class="mb-5 text-base font-semibold tracking-[0.2em] text-accent">NOT-FOR-PROFIT LAW · AUCKLAND</p>
+      <h1 class="font-heading max-w-3xl text-5xl leading-[1.05] md:text-7xl">Legal advice and support for your not-for-profit</h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">Silcock Law is Jo Silcock, sole practitioner, with over 20 years legal experience including personal and professional expertise working with not-for-profits — Jo can support your organisation to achieve positive change.</p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/contact/" class="rounded-full bg-accent px-7 py-3.5 font-semibold text-ink transition hover:bg-accent-dark hover:text-white">Get in touch</a>
+        <a href="/services/" class="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10">View services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden">
+    <img class="ftr left-1/2 top-16 w-[430px] -translate-x-1/2 opacity-55 md:w-[680px]" src="/images/feathernew.png" alt="" />
+    <div class="above mx-auto max-w-4xl px-6 py-20 md:py-28">
+      <div class="border-l-4 border-accent pl-7 md:pl-10">
+        <p class="font-heading text-2xl leading-snug text-brand md:text-3xl">Not-for-profits play a crucial role in society yet have different considerations, priorities and concerns from commercial organisations. Having worked for and within not-for-profit organisations for fifteen years, Jo appreciates the challenges of the not-for-profit sector.</p>
+      </div>
+      <div class="mt-10 grid gap-8 leading-relaxed text-slate-600 md:grid-cols-2">
+        <p>Legal advice isn’t about scrambling for a solution when something goes wrong. Good advice can save your not-for-profit time and money — not just by avoiding problems, but by adding efficiencies, managing risk and maximising opportunities so people can get on with what they’re there to do: make life better for others.</p>
+        <p>That is where Silcock Law can help. Jo can understand what your not-for-profit wants to achieve and has the knowledge to help best achieve it — relevant, effective and practical advice that ensures the limited not-for-profit dollar is spent in the most efficient way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-slate-100 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold tracking-widest text-accent-dark">SERVICES</p>
+        <h2 class="font-heading mt-3 text-4xl text-brand md:text-5xl">How Silcock Law can help</h2>
+      </div>
+      <div class="mt-12"><ServiceCards /></div>
+    </div>
+  </section>
+</Base>

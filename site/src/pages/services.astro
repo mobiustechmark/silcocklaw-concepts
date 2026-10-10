@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+---
+<Base title="Services" description="Governance, compliance, commercial, employment and risk management advice for not-for-profit organisations.">
+  <PageHero eyebrow="SERVICES" title="How Silcock Law can help">
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200">Jo’s experience and expertise spans the areas not-for-profits most often need support.</p>
+  </PageHero>
+  <section class="bg-slate-50">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-24"><ServiceCards /></div>
+  </section>
+  <section class="mx-auto max-w-4xl px-6 py-16 text-center md:py-20">
+    <h2 class="font-heading text-3xl text-brand md:text-4xl">Not sure where your question fits?</h2>
+    <p class="mt-4 text-slate-600">Tell Jo about your not-for-profit and she’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+    <a href="/contact/" class="mt-8 inline-block rounded-full bg-accent px-7 py-3.5 font-semibold text-ink transition hover:bg-accent-dark hover:text-white">Get in touch</a>
+  </section>
+</Base>

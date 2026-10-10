@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/nunito-sans/400.css';
+@import '@fontsource/nunito-sans/600.css';
+@import '@fontsource/nunito-sans/700.css';
+
+/* Palette locked 2026-06-21 (Jo's picks): Tobacco background, Lime accent. */
+@theme {
+  --color-brand: #6e5230;
+  --color-brand-dark: #533e24;
+  --color-brand-light: #85663f;
+  --color-accent: #8bd04a;
+  --color-accent-dark: #6fae37;
+  --color-ink: #27274f;
+  --color-navy: #31336e;
+  --font-sans: 'Nunito Sans', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+.font-heading { font-weight: 600; }
+
+/* Decorative peacock-feather watermarks */
+.ftr { position: absolute; pointer-events: none; z-index: 0; }
+.above { position: relative; z-index: 1; }

@@ -1,0 +1,17 @@
+---
+import { services } from '../data/services';
+---
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {services.map((s) => (
+    <div class="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-100 transition hover:-translate-y-0.5 hover:shadow-md">
+      <h3 class="font-heading text-2xl text-brand">{s.title}</h3>
+      <ul class="mt-4 space-y-2 text-sm text-slate-600">
+        {s.items.map((i) => <li>{i}</li>)}
+      </ul>
+    </div>
+  ))}
+  <div class="flex flex-col justify-center rounded-2xl bg-brand p-7 text-white">
+    <h3 class="font-heading text-2xl">Certainty on cost</h3>
+    <p class="mt-3 text-sm leading-relaxed text-slate-200">Where appropriate, a fixed maximum fee can be agreed so your not-for-profit has certainty.</p>
+  </div>
+</div>
