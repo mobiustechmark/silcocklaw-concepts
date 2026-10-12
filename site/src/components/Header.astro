@@ -15,33 +15,45 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <nav class="hidden items-center gap-9 text-sm font-medium tracking-wide md:flex" aria-label="Main">
       {links.map((l) => (
         <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}
-           class:list={['uppercase transition hover:text-accent-dark', isCurrent(l.href) && 'text-accent-dark']}>{l.label}</a>
+           class:list={['border-b-2 pb-1 uppercase transition hover:text-brand', isCurrent(l.href) ? 'border-accent font-semibold text-brand' : 'border-transparent']}>{l.label}</a>
       ))}
-      <a href="/contact/" class="inline-flex items-center rounded-full bg-brand px-5 py-2.5 uppercase text-white transition hover:bg-brand-light">Contact</a>
+      <a href="/contact/" aria-current={isCurrent('/contact/') ? 'page' : undefined}
+         class:list={['inline-flex items-center rounded-full bg-brand px-5 py-2.5 uppercase text-white transition hover:bg-brand-light', isCurrent('/contact/') && 'ring-2 ring-accent ring-offset-2']}>Contact</a>
     </nav>
     <button id="navBtn" type="button" class="-mr-2 p-2 text-brand md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="navIconOpen" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="navIconClose" class="hidden" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
     </button>
   </div>
-  <nav id="navMenu" class="hidden border-t border-slate-100 bg-white px-4 py-3 text-sm font-medium md:hidden" aria-label="Mobile">
-    {[...links, { href: '/contact/', label: 'Contact' }].map((l) => (
-      <a href={l.href} class="block rounded-lg px-3 py-3 uppercase text-brand hover:bg-slate-50">{l.label}</a>
-    ))}
+  <nav id="navMenu" class="hidden border-t border-slate-100 bg-white px-4 pb-5 pt-2 text-sm font-medium md:hidden" aria-label="Mobile">
+    <div class="divide-y divide-slate-100">
+      {links.map((l) => (
+        <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}
+           class:list={['block border-l-4 px-3 py-4 uppercase text-brand', isCurrent(l.href) ? 'border-l-accent bg-brand/5 font-semibold' : 'border-l-transparent hover:bg-slate-50']}>{l.label}</a>
+      ))}
+    </div>
+    <a href="/contact/" aria-current={isCurrent('/contact/') ? 'page' : undefined}
+       class="mt-4 block rounded-full bg-brand py-3 text-center uppercase text-white">Contact</a>
   </nav>
 </header>
 <script>
   const btn = document.getElementById('navBtn');
   const menu = document.getElementById('navMenu');
+  const setIcon = (open: boolean) => {
+    btn?.setAttribute('aria-expanded', String(open));
+    btn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.getElementById('navIconOpen')?.classList.toggle('hidden', open);
+    document.getElementById('navIconClose')?.classList.toggle('hidden', !open);
+  };
   if (btn && menu) {
     btn.addEventListener('click', () => {
       const open = menu.classList.toggle('hidden') === false;
-      btn.setAttribute('aria-expanded', String(open));
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      setIcon(open);
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
         menu.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
+        setIcon(false);
         btn.focus();
       }
     });

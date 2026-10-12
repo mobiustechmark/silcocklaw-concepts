@@ -1,0 +1,13 @@
+---
+interface Props { heading?: string; }
+const { heading = 'Not sure where your question fits?' } = Astro.props;
+// Keep the key phrase on one line in headings.
+const [before, after] = heading.includes('not-for-profit') ? heading.split('not-for-profit') : [heading, null];
+---
+<section class="border-t border-slate-200 bg-white">
+  <div class="mx-auto max-w-4xl px-6 py-16 text-center md:py-20">
+    <h2 class="font-heading text-3xl text-brand md:text-4xl">{before}{after !== null && <><span class="nowrap">not-for-profit</span>{after}</>}</h2>
+    <p class="mt-4 text-slate-700">Tell Jo about your <span class="nowrap">not-for-profit</span> and she’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+    <a href="/contact/" class="mt-8 inline-block rounded-full bg-accent px-7 py-3.5 font-semibold text-ink transition hover:bg-accent-dark hover:text-white">Get in touch</a>
+  </div>
+</section>

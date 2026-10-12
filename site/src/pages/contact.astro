@@ -8,13 +8,13 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 const field = 'w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-accent-dark focus:ring-2 focus:ring-accent/30 aria-[invalid=true]:border-red-600';
 ---
 <Base title="Contact" description="Contact Jo Silcock about legal advice for your not-for-profit. Mobile 021 127 0244, jo@silcocklaw.co.nz.">
-  <PageHero eyebrow="CONTACT" title="Let’s talk about your not-for-profit" />
+  <PageHero eyebrow="CONTACT" title="Let’s talk about your not-for-profit"><Fragment slot="title">Let’s talk about your <span class="nowrap">not-for-profit</span></Fragment></PageHero>
   <section class="mx-auto grid max-w-6xl gap-14 px-6 py-16 md:grid-cols-2 md:py-24">
     <div>
-      <p class="max-w-md leading-relaxed text-slate-600">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
+      <p class="max-w-md leading-relaxed text-slate-700">Tell me about your not-for-profit and I’ll get back to you to discuss — at no cost — how legal advice may benefit your organisation.</p>
       <dl class="mt-10 space-y-4 text-slate-700">
-        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-dark">Mobile</dt><dd><a href="tel:+64211270244" class="hover:text-brand">021 127 0244</a></dd></div>
-        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-dark">Email</dt><dd><a href="mailto:jo@silcocklaw.co.nz" class="hover:text-brand">jo@silcocklaw.co.nz</a></dd></div>
+        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-ink">Mobile</dt><dd><a href="tel:+64211270244" class="inline-block py-2.5 underline decoration-accent decoration-2 underline-offset-4 hover:text-brand">021 127 0244</a></dd></div>
+        <div class="flex gap-3"><dt class="w-20 font-semibold text-accent-ink">Email</dt><dd><a href="mailto:jo@silcocklaw.co.nz" class="inline-block py-2.5 underline decoration-accent decoration-2 underline-offset-4 hover:text-brand">jo@silcocklaw.co.nz</a></dd></div>
       </dl>
     </div>
 
@@ -64,7 +64,10 @@ const field = 'w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-non
       showError(el, bad);
       if (bad && !first) first = el;
     }
-    first?.focus();
+    if (first) {
+      first.focus({ preventScroll: true });
+      first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
     return !first;
   };
 
